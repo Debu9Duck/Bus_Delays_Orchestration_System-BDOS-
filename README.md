@@ -26,7 +26,7 @@ GPS/이동 데이터를 수집하고, 이상치 제거 → 보간 → 속도 계
     2st_add_speed.py
          │
          ▼
-[Step 3] GRU 기반 이상 감지  ◀── 핵심 모델
+[Step 3] GRU 기반 이상 감지
     gru_anomaly_detector.py
          │
          ▼
@@ -41,8 +41,8 @@ GPS/이동 데이터를 수집하고, 이상치 제거 → 보간 → 속도 계
 
 | 파일 | 설명 |
 |------|------|
-| `data_capture.py` | 원시 데이터 수집 |
-| `data_capture_route.py` | 경로 단위 데이터 수집 |
+| `data_capture.py` | 원시 이동 로그 데이터 수집 |
+| `data_capture_route.py` | 노선 단위 데이터 수집 |
 
 ---
 
