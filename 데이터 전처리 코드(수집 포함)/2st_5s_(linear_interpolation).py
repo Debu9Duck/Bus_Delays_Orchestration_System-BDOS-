@@ -50,8 +50,8 @@ def resample_5sec(rec: dict) -> dict:
 # -----------------------------
 # JSONL 파일 처리
 # -----------------------------
-INPUT_PATH  = "2st_input.jsonl"
-OUTPUT_PATH = "2st_output.jsonl"
+INPUT_PATH  = "2-1st_input.jsonl"
+OUTPUT_PATH = "2-1st_output.jsonl"
 
 input_recs  = {}
 output_recs = {}

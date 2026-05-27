@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# ── [FIX-8] stdout 즉시 flush ──
+# ── stdout 즉시 flush ──
 sys.stdout.reconfigure(line_buffering=True)
 
 # ── 설정 ──────────────────────────────────────
@@ -35,30 +35,30 @@ STARTTIME_USE_DATATM_THRESHOLD = 0.05
 STOP_ENTER_SPEED = 5.7
 STOP_EXIT_SPEED  = 13.42
 
-# ── [수정 21] 동적 percentile tracking 설정 ──
+# ── 동적 percentile tracking 설정 ──
 PCT_EMA_ALPHA_UP   = 0.3
 PCT_EMA_ALPHA_DOWN = 0.25
 PCT_LAG            = 10
 PCT_REF_MIN        = 20.0
 PCT_REF_MAX        = 75.0
 
-# ── [수정 24] 저속/정지 구간 seg_delay 감쇠 ──
+# ── 저속/정지 구간 seg_delay 감쇠 ──
 STOPPED_DELAY_FACTOR  = 0.7
 STOPPED_KMH_THRESHOLD = 1.0
 
-# ── [수정 25] 정지 중 seg_delay delta clamp ──
+# ── 정지 중 seg_delay delta clamp ──
 STOPPED_SEG_DELAY_DELTA_MAX = 3.0
 
-# ── [수정 29] 정지 중 actual_elapsed 상한 계수 ──
+# ── 정지 중 actual_elapsed 상한 계수 ──
 STOPPED_ELAPSED_CAP_FACTOR = 1.5
 
-# ── [수정 31] slow EMA 설정 ──────────────────
+# ── slow EMA 설정 ──────────────────
 SLOW_EMA_ALPHA      = 0.05
 SLOW_PCT_MIN        = 12.0
 SLOW_PCT_MAX        = 86.0
 ARR_FALLBACK_SPREAD = 0.15
 
-# ── [수정 33] 미세/이상치 분기 기준 (분위수) ─
+# ── 미세/이상치 분기 기준 (분위수) ─
 MICRO_ANOMALY_PCT_HI = 86.0
 MICRO_ANOMALY_PCT_LO = 12.0
 
@@ -66,7 +66,7 @@ MICRO_SEG_DELTA_MAX = 2.0
 MICRO_DELAY_CAP     = 60.0
 
 
-# ── [수정 34] 권장 속도 설정 ─────────────────
+# ── 권장 속도 설정 ─────────────────
 TARGET_SPEED_MIN_DELAY = 5.0
 TARGET_SPEED_MAX_KMH   = 80.0
 TARGET_SPEED_MIN_KMH   = 1.0
@@ -84,20 +84,20 @@ _dwell_start_cache:    dict[str, datetime] = {}
 _stuck_tracker: dict[str, dict] = {}
 STUCK_THRESHOLD = 30
 
-# ── [수정 18] 출력 게이팅 캐시 ───────────────
+# ── 출력 게이팅 캐시 ───────────────
 _output_enabled:  dict[str, bool] = {}
 _in_stop_silence: dict[str, bool] = {}
 
-# ── [수정 30] 회차지 처리: leg 상태 캐시 ─────
+# ── 회차지 처리: leg 상태 캐시 ─────
 _leg_cache: dict[str, str | None] = {}
 
-# ── [수정 21] fast percentile tracking 캐시 ──
+# ── fast percentile tracking 캐시 ──
 _ema_pct_cache: dict[str, float] = {}
 
-# ── [수정 31] slow percentile tracking 캐시 ──
+# ── slow percentile tracking 캐시 ──
 _slow_ema_pct_cache: dict[str, float] = {}
 
-# ── [수정 32/33] 미세 지연 캐시 ──────────────
+# ── 미세 지연 캐시 ──────────────
 _anomaly_seq_cache:    dict[str, set]        = {}
 _micro_seg_cache:      dict[str, float]      = {}
 _micro_cum_cache:      dict[str, float]      = {}
@@ -129,7 +129,7 @@ def adjacent_slots(slot: str) -> list:
     return out
 
 
-# ── [수정 30] 회차지 전환 처리 ───────────────
+# ── 회차지 전환 처리 ───────────────
 
 def _reset_vehicle_state(veh_id: str) -> None:
     keys_to_del = [k for k in _starttime_cache if k[0] == veh_id]
@@ -326,7 +326,7 @@ def calc_speeds(veh_id: str, sect_dist: float, data_tm: datetime,
     return current_kmh, norm_kmh
 
 
-# ── [수정 B] starttime 추정 ───────────────────
+# ── starttime 추정 ───────────────────
 def get_or_estimate_starttime(veh_id: str, seq: int, sect_dist: float,
                                data_tm: datetime, norm_seq: dict,
                                combo_key: str) -> datetime | None:
@@ -374,7 +374,7 @@ def get_or_estimate_starttime(veh_id: str, seq: int, sect_dist: float,
     return starttime
 
 
-# ── [수정 21 + 23 + 25] 동적 percentile tracking ───
+# ──  동적 percentile tracking ───
 
 def _estimate_raw_percentile(actual_elapsed: float, norm_seq: dict,
                               combo_key: str, dist: float) -> float:
@@ -482,7 +482,7 @@ def calc_seg_delay(veh_id: str, sect_dist: float, actual_elapsed: float,
     return clamped, expected, raw_pct
 
 
-# ── [수정 32/33] 미세 지연 계산 ──────────────
+# ── 미세 지연 계산 ──────────────
 
 def calc_micro_seg(veh_id: str, seq: int, actual_elapsed: float,
                    norm_seq: dict, combo_key: str, sect_dist: float,
@@ -531,7 +531,7 @@ def _flush_micro_seg(veh_id: str, prev_seq: int) -> None:
     _micro_seg_cache[veh_id] = 0.0
 
 
-# ── [FIX-5] micro_cum 재시작 복원 ────────────
+# ── micro_cum 재시작 복원 ────────────
 
 def _restore_micro_cum(veh_id: str) -> None:
     if _micro_cum_restored.get(veh_id, False):
@@ -824,7 +824,7 @@ def calc_eta_per_seq(veh_id: str, current_seq: int,
     return results
 
 
-# ── [수정 34-2] 지연 해소 권장 속도 계산 ─────
+# ── 지연 해소 권장 속도 계산 ─────
 
 def calc_target_speed(eta_list: list, total_delay: float,
                       stations: dict, current_seq: int,
@@ -1137,7 +1137,7 @@ class _QuotaExceededError(Exception):
     pass
 
 
-# ── 신규 버스 감지 출력 ───────────────────────
+# ── 신규 버스 감지 출력 ───────────────────────(추후 노선 확대 시 노선데이터로부터 방향 파싱 추가)
 def print_new_vehicle(veh_id: str, seq: int, sect_dist: float,
                       turn_seq: int) -> None:
     leg = "outbound(도봉→온수)" if seq <= turn_seq else "inbound(온수→도봉)"

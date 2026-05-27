@@ -1,8 +1,8 @@
 import json
 from datetime import datetime
 
-input_path  = "3st_input.jsonl"
-output_path = "3st_output.jsonl"
+input_path  = "2-2st_input.jsonl"
+output_path = "2-2st_output.jsonl"
 
 def has_excessive_repeats(dist_list, threshold=50):
     if not dist_list:
