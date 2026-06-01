@@ -17,12 +17,12 @@ GPS/이동 데이터를 수집하고, 이상치 제거 → 보간 → 속도 계
          │
          ▼
 [Step 1] 시작/종료 시간 보간
-    1st_starttime_interpolation.py
+    1st_starttime_interpolation.py (first)
     1st_endtime_interpolation.py
          │
          ▼
 [Step 2] 5초 단위 선형 보간 + 속도 추가
-    2st_5s_linear_interpolation.py
+    2st_5s_linear_interpolation.py (first)
     2st_add_speed.py
          │
          ▼
@@ -31,7 +31,7 @@ GPS/이동 데이터를 수집하고, 이상치 제거 → 보간 → 속도 계
          │
          ▼
 [Step 4] 정지 패턴 분석 + 정규화
-    4-1st_stop_fattern.py
+    4-1st_stop_fattern.py (first)
     4-2st_Normalization.py
 ```
 
