@@ -63,7 +63,7 @@ MICRO_ANOMALY_PCT_HI = 86.0
 MICRO_ANOMALY_PCT_LO = 12.0
 
 MICRO_SEG_DELTA_MAX = 2.0
-MICRO_DELAY_CAP     = 60.0
+MICRO_DELAY_CAP     = 600.0
 
 
 # ── 권장 속도 설정 ─────────────────
@@ -436,7 +436,7 @@ def _interpolate_expected(ref_pct: float, p10: float,
 
 
 # ── 현재 구간 딜레이 계산 ─────────────────────
-MAX_SEG_DELAY_ABS = 300.0
+MAX_SEG_DELAY_ABS = 600.0
 
 def calc_seg_delay(veh_id: str, sect_dist: float, actual_elapsed: float,
                    norm_seq: dict, combo_key: str,
