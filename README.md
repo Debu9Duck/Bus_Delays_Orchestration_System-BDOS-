@@ -1,7 +1,7 @@
 # Bus_Delays_Orchestration_System-BDOS-
 BDOS is a real-time bus analytics system that predicts delays using live GPS data and historical travel-time distributions. It models each bus as a stateful agent tracking segment progress, stops, and cumulative delay, generating adaptive ETA updates and propagating delay across remaining routes for accurate prediction.
 
-2026 National Land Transportation Data Utilization Competition - 2026 국토교통 데이터 활용 경진대회
+2026 Korea land-transport data contest - 2026 국토교통 데이터 활용 경진대회
 
 # 연구 요약
 - 기존 버스관리시스템(BMS/BIS)은 정류장 도착 시간과 구간 거리 중심의 ETA 산출 구조로 인해 신호 대기, 교통 혼잡, 정차 시간 등 실제 도로 환경의 복합 변수를 충분히 반영하지 못하는 한계가 존재하였다.
