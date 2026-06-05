@@ -3,8 +3,8 @@ import statistics
 from collections import defaultdict
 
 # ── 설정 ──────────────────────────────────────────
-STOP_ENTER_SPEED = 5.7
-STOP_EXIT_SPEED  = 13.42
+STOP_ENTER_SPEED = 5.0
+STOP_EXIT_SPEED  = 10.0
 INTERVAL_SEC     = 5
 CLUSTER_TOL      = 0.072
 
